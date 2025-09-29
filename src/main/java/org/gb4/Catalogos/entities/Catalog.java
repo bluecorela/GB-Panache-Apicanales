@@ -1,4 +1,4 @@
-package org.gb4.entities;
+package org.gb4.Catalogos.entities;
 
 
 

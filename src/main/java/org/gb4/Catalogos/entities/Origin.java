@@ -1,4 +1,4 @@
-package org.gb4.entities;
+package org.gb4.Catalogos.entities;
 
 import io.quarkus.hibernate.reactive.panache.PanacheEntityBase;
 import jakarta.persistence.*;
@@ -10,49 +10,45 @@ import java.time.LocalDateTime;
 
 @Entity
 @Table(
-    name = "mdl04_description",
+    name = "mdl04_origin",
     uniqueConstraints = {
-        @UniqueConstraint(
-            name = "uk_mdl04_description_element_id_language_id",
-            columnNames = {"element_id", "language_id"}
-        )
+        @UniqueConstraint(name = "uk_mdl04_origin_code", columnNames = "origin_code")
     },
     indexes = {
-        @Index(
-            name = "idx_mdl04_description_language_id_element_id",
-            columnList = "element_id,language_id"
-        )
+        @Index(name = "idx_mdl04_origin_code", columnList = "origin_code")
     }
 )
-public class Description extends PanacheEntityBase {
+public class Origin extends PanacheEntityBase {
 
     @Id
-    @Column(name = "description_id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "origin_id")
     public Integer id;
+    
 
-    // FK → Element
+    // FK -> Element
     @ManyToOne
     @JoinColumn(name = "element_id", referencedColumnName = "element_id")
-     @JsonBackReference
+    @JsonBackReference
     public Element element;
 
-    @Column(name = "language", length = 2, nullable = false)
-    public String language;
-
-    @Column(name = "description", length = 250, nullable = false)
+    @Column(name = "origin_description", nullable = false, length = 100)
     public String description;
+
+    @Column(name = "origin_code", nullable = false, length = 10, unique = true)
+    public String code;
 
     @Column(name = "created_by", nullable = false)
     public Integer createdBy;
 
     @CreationTimestamp
-    @Column(name = "created_date", nullable = false)
+    @Column(name = "created_date", nullable = false, updatable = false)
     public LocalDateTime createdDate;
 
     @Column(name = "approved_by", nullable = false)
     public Integer approvedBy;
 
     @CreationTimestamp
-    @Column(name = "approved_date", nullable = false)
+    @Column(name = "approved_date", nullable = false, updatable = false)
     public LocalDateTime approvedDate;
 }

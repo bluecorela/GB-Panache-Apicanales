@@ -1,7 +1,8 @@
-package org.gb4.repositories;
+package org.gb4.Catalogos.repositories;
+import org.gb4.Catalogos.entities.Catalog;
+
 import io.quarkus.hibernate.reactive.panache.PanacheRepositoryBase;
 import  jakarta.enterprise.context.ApplicationScoped;
-import org.gb4.entities.Catalog;
 
 @ApplicationScoped
 public class RepositoriGen implements PanacheRepositoryBase<Catalog,Long> {

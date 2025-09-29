@@ -1,9 +1,9 @@
-package org.gb4;
+package org.gb4.Catalogos;
 
 import java.util.List;
 
-import org.gb4.entities.Catalog;
-import org.gb4.repositories.RepositoriGen;
+import org.gb4.Catalogos.entities.Catalog;
+import org.gb4.Catalogos.repositories.RepositoriGen;
 
 import io.smallrye.mutiny.Uni;
 import jakarta.inject.Inject;
@@ -19,10 +19,10 @@ public class apican {
    RepositoriGen cat;
     @GET
     @Path("Cat-Elements-List")
-    public Uni<List<Catalog>> hello() {
+    public Uni<List<Catalog>>  hello() {
 
 
       return cat.findAll().list();
-        //return "Hello from Quarkus REST";
+        
     }
 }
