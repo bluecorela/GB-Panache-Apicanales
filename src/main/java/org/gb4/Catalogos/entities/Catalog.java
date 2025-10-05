@@ -54,3 +54,4 @@ public class Catalog extends PanacheEntityBase {
     @JsonManagedReference
     public List<Element> elements = new ArrayList<>();
 }
+
