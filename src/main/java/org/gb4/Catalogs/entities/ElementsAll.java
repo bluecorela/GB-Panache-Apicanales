@@ -47,12 +47,10 @@ public class ElementsAll extends PanacheEntityBase {
 
     // 🧩 Relación con la vista de catálogos (catalog_all)
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(
-        name = "catalog_id",
-        referencedColumnName = "catalog_id",
-        insertable = false,
-        updatable = false
-    )
+      @JoinColumns({
+        @JoinColumn(name = "catalog_id", referencedColumnName = "catalog_id", insertable = false, updatable = false),
+        @JoinColumn(name = "RID", referencedColumnName = "RID", insertable = false, updatable = false)
+    })
     @JsonBackReference
     public CatalogosAll catalog;
 }

@@ -38,6 +38,9 @@ public class CatalogosAll extends PanacheEntityBase {
 
     @Column(name = "source", nullable = false, length = 16)
     public String source; // 👈 "approved" o "pending" de la vista
+    
+    @Column(name = "RID")   
+    public Integer RID;
 
     // ✅ Relación con la vista de elementos
     @OneToMany(mappedBy = "catalog", fetch = FetchType.EAGER)

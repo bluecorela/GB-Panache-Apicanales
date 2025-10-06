@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.gb4.Catalogs.entities.CatalogosAll;
 import org.gb4.Catalogs.repositories.repocats;
+import io.quarkus.panache.common.Parameters;
 
 import io.smallrye.mutiny.Uni;
 import jakarta.inject.Inject;
@@ -31,7 +32,11 @@ public class apicats {
 
 //return  cat.find("select c from CatalogosAll c join fetch c.elements e where c.id = ?1 and e.name = ?2",678L, "Mirror2").list();
 
-return  cat.find("select c from CatalogosAll c join fetch c.elements e where c.ids = ?1 and e.name = ?2", 4L,"Mirror2").list();
+//return  cat.find("select c from CatalogosAll c join fetch c.elements e where c.ids = ?1 and e.name = ?2", 4L,"Mirror2").list();
+
+//return  cat.find("select c from CatalogosAll c join fetch c.elements e where c.ids = ?1 and  (:name IS NULL OR e.name = :name)", 4L,"Mirror2").list();
+String name = null; 
+return cat.find("SELECT DISTINCT c FROM CatalogosAll c JOIN FETCH c.elements e WHERE c.ids = :id AND (:name IS NULL OR :name = '' OR e.name = :name)",Parameters.with("id", 4L).and("name", name)).list();
 
 
 
